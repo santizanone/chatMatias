@@ -23,6 +23,7 @@ private Controller controller;
     public void startUI(){
         initComponents();
         this.setVisible(true);
+        this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -124,6 +125,7 @@ private Controller controller;
         String password = new String(jPasswordField1.getPassword());
         if (username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(null, "Complete todos los datos");
+            return;
         }
         controller.registerUser(new UserDto(username, password));
 

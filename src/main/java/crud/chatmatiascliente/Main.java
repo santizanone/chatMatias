@@ -5,11 +5,21 @@
  */
 package crud.chatmatiascliente;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import crud.controller.Controller;
+import crud.repository.ContactDao;
+import crud.repository.IContactDao;
 import crud.repository.IUserDao;
 import crud.repository.UserDao;
+import crud.repository.model.Contact;
 import crud.views.Login;
 import crud.views.Registro;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -21,17 +31,24 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        IUserDao dao = new UserDao();
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        IUserDao userDao = new UserDao();
+        
         Registro registro = new Registro();
         Login login = new Login();
-        Controller controller = new Controller(dao,registro,login);
+        Controller controller = new Controller(userDao,registro,login);
         login.setController(controller);
         registro.setController(controller);
 
 
         login.setVisible(true);
 
+       
+      
 
 
 

@@ -39,7 +39,7 @@ public class ChatUi3 extends javax.swing.JFrame {
     private void showUsers() {
         jPanelContact.setLayout(new BoxLayout(jPanelContact, BoxLayout.Y_AXIS));
         for (int i = 0; i < 20; i++) {
-            jPanelContact.add(new ContactUI());
+         //   jPanelContact.add(new ContactUI());
         }
         jScrollPane1.setHorizontalScrollBar(null);
         jScrollPane1.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);

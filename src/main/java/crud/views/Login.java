@@ -9,6 +9,7 @@ import crud.controller.Controller;
 import crud.repository.model.UserDto;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -37,7 +38,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void initComponents2() {
-
+        setResizable(false);
         jButton2 = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
         etiquetaBienvenida = new javax.swing.JLabel();
@@ -59,7 +60,8 @@ public class Login extends javax.swing.JFrame {
         etiquetaBienvenida.setBackground(new java.awt.Color(153, 204, 255));
         etiquetaBienvenida.setFont(new java.awt.Font("Manjari", 0, 24)); // NOI18N
         etiquetaBienvenida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetaBienvenida.setText("Bienvenido nuevamente");
+        etiquetaBienvenida.setText("Bienvenido");
+        etiquetaBienvenida.setHorizontalTextPosition(SwingConstants.CENTER);
 
         EtiquetaNombreUsuario.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         EtiquetaNombreUsuario.setText("Username");

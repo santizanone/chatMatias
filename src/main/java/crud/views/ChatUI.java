@@ -129,7 +129,11 @@ public class ChatUI extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         SendMsgButton.setText("Enviar");
-        SendMsgButton.addActionListener(this::sendMsgButtonActionPerformed);
+        SendMsgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendMsgButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -189,6 +193,10 @@ public class ChatUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SendMsgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMsgButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SendMsgButtonActionPerformed
 
     /**
      * @param args the command line arguments
