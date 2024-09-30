@@ -103,7 +103,7 @@ public class Controller {
          SwingWorker worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-              
+               
                if (contactDao.getContact(contact.getUsername()) == null && userDao.retrieveUser(contact.getUsername()) != null) {
                    return true;
                }

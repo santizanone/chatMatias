@@ -21,6 +21,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -44,6 +45,7 @@ public class ChatUi2 extends javax.swing.JFrame {
     private ObjectOutputStream outputStream;
     private List<Message> receivedMessages;
     private ContactUI currentOpenedChat;
+    HashMap<String, ArrayList<Message>> messagesStorage = new HashMap<String, ArrayList<Message>>();
 
     public ChatUi2(Controller controller, String username) {
         this.controller = controller;
@@ -107,18 +109,22 @@ public class ChatUi2 extends javax.swing.JFrame {
     }
 
     private void showReceivingMessages(Message msg) {
-
+        boolean contactExisting = false;
         receivedMessages.add(msg);
         List<Contact> contacts = controller.getLocalContacts();
         if (contacts.size() == 0) {
             controller.saveContactLocally(new Contact(msg.getOriginClientName()));
         } else {
             for (Contact contact : contacts) {
-                if (contact.getUsername().equals(msg.getOriginClientName())) {                  
+                if (contact.getUsername().equals(msg.getOriginClientName())) {
+                    contactExisting = true;
                     break;
                 }
-                 controller.saveContactLocally(contact);
             }
+            if (contactExisting == false) {
+                controller.saveContactLocally(new Contact(msg.getOriginClientName()));
+            }
+
         }
         updateMessages();
 
@@ -126,6 +132,8 @@ public class ChatUi2 extends javax.swing.JFrame {
 
     private synchronized void updateMessages() {
         if (currentOpenedChat != null) {
+            receivedArea.setText("");
+            sendedArea.setText("");
             System.out.println("current opened chat " + currentOpenedChat.getContactName());
             for (Message message : receivedMessages) {
                 if (message.getOriginClientName().equals(currentOpenedChat.getContactName())) {
@@ -135,13 +143,26 @@ public class ChatUi2 extends javax.swing.JFrame {
                             System.out.println("entrando");
                             receivedArea.append("\n" + message.getOriginClientName() + ": " + message.getMessageForDestination());
                             System.out.println(message.getOriginClientName() + ": " + message.getMessageForDestination());
-                            receivedMessages.remove(message);
+                            //receivedMessages.remove(message);
+                        }
+                    });
+                }
+                else if (message.getDestinationClientName().equals(currentOpenedChat.getContactName())) {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("entrando");
+                            sendedArea.append("\n" + message.getMessageForDestination());
+                            System.out.println(message.getOriginClientName() + ": " + message.getMessageForDestination());
+                            //receivedMessages.remove(message);
                         }
                     });
                 }
             }
         }
     }
+    
+    
 
     private void showUsers() {
         contactUiPanel.setLayout(new BoxLayout(contactUiPanel, BoxLayout.Y_AXIS));
@@ -335,6 +356,9 @@ public class ChatUi2 extends javax.swing.JFrame {
             }
             System.out.println("enviando " + jTextAreaSendMsg.getText());
             Message message = new Message(username, currentOpenedChat.getContactName(), jTextAreaSendMsg.getText());
+
+            receivedMessages.add(message);
+
             outputStream.writeObject(message);
             outputStream.flush();
             SwingUtilities.invokeLater(new Runnable() {
