@@ -127,7 +127,7 @@ private Controller controller;
             JOptionPane.showMessageDialog(null, "Complete todos los datos");
             return;
         }
-        controller.registerUser(new UserDto(username, password));
+        controller.registerUser(new UserDto(username, password,-1));
 
     }
 

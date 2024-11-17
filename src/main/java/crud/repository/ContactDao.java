@@ -39,7 +39,9 @@ public class ContactDao implements IContactDao {
         try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
             String line = null;
             while ((line = reader.readLine()) != null) {
-                contactsList.add(new Contact(line));
+                String nameDivided[] = line.split("-");
+                
+                contactsList.add(new Contact(nameDivided[0],Integer.parseInt(nameDivided[1])));
             }
         } catch (IOException x) {
             System.err.format("1 - IOException: %s%n", x);
@@ -63,7 +65,7 @@ public class ContactDao implements IContactDao {
         }
 
         try (BufferedWriter writer = Files.newBufferedWriter(path, charset, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
-            writer.write(username);
+            writer.write(username + "-"  + contact.getId());
             writer.newLine();
         } catch (IOException x) {
             System.err.format("2 -IOException: %s%n", x);
@@ -79,7 +81,8 @@ public class ContactDao implements IContactDao {
             String line = null;
             while ((line = reader.readLine()) != null) {
                 if (line.equals(username)) {
-                    return new Contact(username);
+                    String nameDivided[] = line.split("-");
+                    return new Contact(nameDivided[0],Integer.parseInt(nameDivided[1]));
                 }
             }
         } catch (IOException x) {

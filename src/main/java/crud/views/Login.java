@@ -155,7 +155,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Complete the fields");
             return;
         }
-        controller.login(new UserDto(username, password));
+        controller.login(new UserDto(username, password,-1));
     }
 
     private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {

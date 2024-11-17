@@ -12,6 +12,9 @@ import crud.repository.IContactDao;
 import crud.repository.IUserDao;
 import crud.repository.UserDao;
 import crud.repository.model.Contact;
+import crud.views.ChatUi2;
+
+import crud.views.JFrameGridBagLayout;
 import crud.views.Login;
 import crud.views.Registro;
 import java.nio.file.Path;
@@ -31,7 +34,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
+      /*  try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,12 +48,13 @@ public class Main {
         registro.setController(controller);
 
 
-        login.setVisible(true);
-
-       
+       login.setVisible(true);
       
+       
+      */
 
-
+      
+      new JFrameGridBagLayout().setVisible(true);
 
     }
     

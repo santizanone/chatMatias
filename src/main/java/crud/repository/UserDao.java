@@ -20,28 +20,22 @@ public class UserDao implements IUserDao {
 
     @Override
     public void registerUser(UserDto user) {
-        Thread thread = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    Connection con = DriverManager.getConnection(URL, USER, PASS);
-                    String query = "insert into user (username,password) values (?,?)";
-                    try {
-                        PreparedStatement ps = con.prepareStatement(query);
-                        ps.setString(1, user.getUsername());
-                        ps.setString(2, user.getPassword());
-                        ps.executeUpdate();
-                        ps.close();
-                        con.close();
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+        try {
+            Connection con = DriverManager.getConnection(URL, USER, PASS);
+            String query = "insert into user (username,password) values (?,?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, user.getUsername());
+                ps.setString(2, user.getPassword());
+                ps.executeUpdate();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        };
-        thread.start();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -56,7 +50,7 @@ public class UserDao implements IUserDao {
             rs = ps.executeQuery();
             UserDto userDto = null;
             while (rs.next()) {
-                userDto = new UserDto( rs.getString(2), rs.getString(3));
+                userDto = new UserDto(rs.getString(2), rs.getString(3),rs.getInt(1));
             }
             ps.close();
             rs.close();
@@ -67,4 +61,45 @@ public class UserDao implements IUserDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void changeUsername(String oldName, String newName) {
+        try {
+            Connection con = DriverManager.getConnection(URL, USER, PASS);
+            String query = "update user set username = ? where username = ?";
+            try {
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, newName);
+                ps.setString(2, oldName);
+                ps.executeUpdate();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changePassword(String username, String newPassword) {
+         try {
+            Connection con = DriverManager.getConnection(URL, USER, PASS);
+            String query = "update user set password = ? where username = ?";
+            try {
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, newPassword);
+                ps.setString(2, username);
+                ps.executeUpdate();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

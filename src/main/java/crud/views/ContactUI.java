@@ -21,6 +21,7 @@ public class ContactUI extends javax.swing.JPanel  {
 
     private Contact contact;
     
+    
     public ContactUI(Contact contact) {    
         this.contact = contact;
         initComponents();       
@@ -34,7 +35,9 @@ ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("/image
     }
 
 
-   
+    public Contact getContact(){
+        return contact;
+    }
 
     public String getContactName(){
         return contact.getUsername();

@@ -1,4 +1,6 @@
 crud\controller\Controller$3.class
+crud\views\ChatUi2$8.class
+crud\views\JFrameGridBagLayout.class
 crud\views\ChatUi3$1.class
 crud\views\ChatUi2.class
 crud\views\Registro.class
@@ -14,6 +16,7 @@ crud\controller\Controller$1.class
 crud\repository\ContactDao.class
 crud\repository\model\HandShake.class
 crud\views\ChatUi2$1.class
+crud\views\JFrameGridBagLayout$3.class
 crud\repository\UserDao$1.class
 crud\views\Registro$1.class
 crud\views\ChatUi2$7.class
@@ -21,12 +24,11 @@ crud\repository\IContactDao.class
 crud\views\ChatUi2$2.class
 crud\views\ChatUi3.class
 crud\repository\model\Contact.class
+crud\views\JFrameGridBagLayout$1.class
 crud\views\Login.class
-crud\views\ChatUI$1.class
-crud\views\ChatUI.class
-crud\views\ChatUI$2.class
 crud\repository\UserDao.class
 crud\repository\model\UserDto.class
+crud\views\JFrameGridBagLayout$2.class
 crud\controller\Controller$2.class
 crud\views\Login$2.class
 crud\controller\Controller.class

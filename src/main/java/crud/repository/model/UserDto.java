@@ -13,12 +13,24 @@ public class UserDto {
     private String username;
 
     private String password;
+    
+    private int id;
 
-    public UserDto(String username, String password) {
+    public UserDto(String username, String password, int id) {
         this.username = username;
         this.password = password;
+        this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int newId) {
+        id = newId;
+    }
+
+    
     @Override
     public String toString() {
         return "UserDto{" +
