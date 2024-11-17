@@ -11,9 +11,11 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JViewport;
 
 /**
@@ -28,24 +30,60 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
     public JFrameGridBagLayout() {
         initComponents();
         jScrollPane1.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
-        ContactUI c = new ContactUI(new Contact("www",1));
-         YellowPanelContact.add(c);
+
+        YellowPanelContact.add(Box.createVerticalStrut(10)); // Adjust the height (10) for desired spacing
+        for (int i = 0; i < 20; i++) {
+            ContactUi2 c2 = new ContactUi2(new Contact("pepe", -1));
+
+            YellowPanelContact.add(c2);
+            YellowPanelContact.add(Box.createVerticalStrut(10)); // Adjust the height (10) for desired spacing
+            JSeparator separator = new JSeparator();
+            separator.setPreferredSize(new Dimension(1, 5)); // Thin horizontal separator
+            YellowPanelContact.add(separator);
+
+            YellowPanelContact.add(Box.createVerticalStrut(10)); // Adjust the height (10) for desired spacing
+
+        }
         YellowPanelContact.revalidate();
         YellowPanelContact.repaint();
-     
-    }
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        chatPanel1 = new crud.views.ChatPanel();
+        jLabel1 = new javax.swing.JLabel();
         Panel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         YellowPanelContact = new javax.swing.JPanel();
         greenPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1Blue = new javax.swing.JPanel();
+        jPanelName = new javax.swing.JPanel();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 0), new java.awt.Dimension(15, 32767));
+        jLabel2 = new javax.swing.JLabel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jPanelChat = new javax.swing.JPanel();
+        chatPanel2 = new crud.views.ChatPanel();
+        jPanel2Red = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout chatPanel1Layout = new javax.swing.GroupLayout(chatPanel1);
+        chatPanel1.setLayout(chatPanel1Layout);
+        chatPanel1Layout.setHorizontalGroup(
+            chatPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        chatPanel1Layout.setVerticalGroup(
+            chatPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -53,8 +91,9 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         Panel.setPreferredSize(new java.awt.Dimension(695, 400));
         Panel.setLayout(new javax.swing.BoxLayout(Panel, javax.swing.BoxLayout.X_AXIS));
 
-        YellowPanelContact.setBackground(new java.awt.Color(255, 255, 102));
-        YellowPanelContact.setPreferredSize(new java.awt.Dimension(200, 400));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 400));
+
+        YellowPanelContact.setBackground(new java.awt.Color(244, 232, 232));
         YellowPanelContact.setLayout(new javax.swing.BoxLayout(YellowPanelContact, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(YellowPanelContact);
 
@@ -64,35 +103,76 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         greenPanel.setPreferredSize(new java.awt.Dimension(495, 400));
         greenPanel.setLayout(new javax.swing.BoxLayout(greenPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1Blue.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1Blue.setLayout(new javax.swing.BoxLayout(jPanel1Blue, javax.swing.BoxLayout.Y_AXIS));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+        jPanelName.setBackground(new java.awt.Color(244, 232, 232));
+        jPanelName.setMaximumSize(new java.awt.Dimension(32767, 80));
+        jPanelName.setPreferredSize(new java.awt.Dimension(495, 70));
+        jPanelName.setLayout(new javax.swing.BoxLayout(jPanelName, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelName.add(filler2);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Ssgopkddddddddddddddddantino");
+        jPanelName.add(jLabel2);
+        jPanelName.add(filler4);
+
+        jPanel1Blue.add(jPanelName);
+
+        jPanelChat.setPreferredSize(new java.awt.Dimension(495, 500));
+        jPanelChat.setLayout(new java.awt.GridLayout());
+
+        javax.swing.GroupLayout chatPanel2Layout = new javax.swing.GroupLayout(chatPanel2);
+        chatPanel2.setLayout(chatPanel2Layout);
+        chatPanel2Layout.setHorizontalGroup(
+            chatPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+        chatPanel2Layout.setVerticalGroup(
+            chatPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
 
-        greenPanel.add(jPanel1);
+        jPanelChat.add(chatPanel2);
 
-        jPanel2.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel1Blue.add(jPanelChat);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 84, Short.MAX_VALUE)
-        );
+        greenPanel.add(jPanel1Blue);
 
-        greenPanel.add(jPanel2);
+        jPanel2Red.setBackground(new java.awt.Color(187, 197, 203));
+        jPanel2Red.setMaximumSize(new java.awt.Dimension(32767, 120));
+        jPanel2Red.setPreferredSize(new java.awt.Dimension(495, 100));
+        jPanel2Red.setLayout(new javax.swing.BoxLayout(jPanel2Red, javax.swing.BoxLayout.LINE_AXIS));
+
+        jButton1.setBackground(new java.awt.Color(187, 197, 203));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addblack.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2Red.add(jButton1);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel2Red.add(jScrollPane2);
+
+        jButton2.setBackground(new java.awt.Color(187, 197, 203));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sendBlack.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jPanel2Red.add(jButton2);
+
+        greenPanel.add(jPanel2Red);
 
         Panel.add(greenPanel);
 
@@ -100,6 +180,10 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -136,9 +220,21 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
     private javax.swing.JPanel YellowPanelContact;
+    private crud.views.ChatPanel chatPanel1;
+    private crud.views.ChatPanel chatPanel2;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler4;
     private javax.swing.JPanel greenPanel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1Blue;
+    private javax.swing.JPanel jPanel2Red;
+    private javax.swing.JPanel jPanelChat;
+    private javax.swing.JPanel jPanelName;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
