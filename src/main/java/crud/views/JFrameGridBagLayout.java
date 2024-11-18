@@ -17,10 +17,12 @@ import java.awt.event.ComponentEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JViewport;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -51,38 +53,56 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         YellowPanelContact.revalidate();
         YellowPanelContact.repaint();
 
-        /* JTextArea area = new JTextArea("hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
-                + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
-                + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
-                + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado --------------------------");
-        area.setLineWrap(true);
-        area.setWrapStyleWord(true);
-        area.setPreferredSize(new Dimension(300, 100));
-        area.setVisible(true);
-      jPanel3.add(area);*/
-        jPanel2.add(Box.createVerticalStrut(15));
-        for (int i = 0; i < 10; i++) {
-            ChatBubble b = new ChatBubble();
-            jPanel2.add(b);
-            jPanel2.revalidate();
-            jPanel2.repaint();
+        
+        
+        for (int i = 0; i < 5; i++) {
+            String messageText = "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado --------------------------";
+            JLabel messageLabel = new JLabel("<html><p style='width: 300px;'>" + messageText + "</p></html>");
+            messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);  // Align left for received, right for sent
+            messageLabel.setBackground(Color.GREEN);
+            jPanel2.add(messageLabel);
+
             jPanel2.add(Box.createVerticalStrut(15));
+        }
+        for (int i = 0; i < 10; i++) {
+            String messageText = "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado --------------------------";
+            JLabel messageLabel = new JLabel("<html><p style='width: 300px;'>" + messageText + "</p></html>");
+            messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            jPanel2.add(messageLabel);
+           
 
+            jPanel2.add(Box.createVerticalStrut(15));
         }
         
         
-          jPanel4.add(Box.createVerticalStrut(15));
-        for (int i = 0; i < 20; i++) {
-            ChatBubble b = new ChatBubble();
-            b.changecolour(Color.yellow);
-            jPanel4.add(b);
-            jPanel4.revalidate();
-            jPanel4.repaint();
-            jPanel4.add(Box.createVerticalStrut(15));
+        
+        
+        jPanel2.revalidate();
+        jPanel2.repaint();
+        for (int i = 0; i < 10; i++) {
+            String messageText = "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                    + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado --------------------------";
+            JLabel messageLabel = new JLabel("<html><p style='width: 300px;'>" + messageText + "</p></html>");
+            messageLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+            messageLabel.setBorder(new EmptyBorder(0, 12, 0, 0)); // Left padding for received messages
 
+            jPanel2.add(messageLabel);
+
+            jPanel2.add(Box.createVerticalStrut(15));
         }
+        jPanel2.revalidate();
+        jPanel2.repaint();
 
         jScrollPane4.getViewport().setOpaque(false);
+        jScrollPane6.getViewport().setOpaque(false);
 
     }
 
@@ -106,13 +126,14 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         chatPanel2 = new crud.views.ChatPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
         jPanel2Red = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout chatPanel1Layout = new javax.swing.GroupLayout(chatPanel1);
         chatPanel1.setLayout(chatPanel1Layout);
@@ -169,17 +190,16 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setOpaque(false);
 
-        chatPanel2.setLayout(new java.awt.GridLayout(0, 2));
+        chatPanel2.setLayout(new javax.swing.BoxLayout(chatPanel2, javax.swing.BoxLayout.Y_AXIS));
 
+        jScrollPane6.setOpaque(false);
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setOpaque(false);
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane6.setViewportView(jPanel2);
 
         chatPanel2.add(jScrollPane6);
-
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
-        jScrollPane7.setViewportView(jPanel4);
-
-        chatPanel2.add(jScrollPane7);
 
         jScrollPane4.setViewportView(chatPanel2);
 
@@ -225,6 +245,14 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         Panel.add(greenPanel);
 
         getContentPane().add(Panel);
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,17 +305,18 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1Blue;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel2Red;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelChat;
     private javax.swing.JPanel jPanelName;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,12 +18,29 @@ public class ChatBubble extends javax.swing.JPanel {
      */
     public ChatBubble() {
         initComponents();
+        jTextArea1.setText(" jPanel3.add(Box.createVerticalStrut(15));\n" +
+"        for (int i = 0; i < 10; i++) {\n" +
+"            ChatBubble b = new ChatBubble();\n" +
+"            jPanel3.add(b);\n" +
+"            jPanel3.revalidate();\n" +
+"            jPanel3.repaint();\n" +
+"            jPanel3.add(Box.createVerticalStrut(15));\n" +
+"\n" +" jPanel3.add(Box.createVerticalStrut(15));\n" +
+"        for (int i = 0; i < 10; i++) {\n" +
+"            ChatBubble b = new ChatBubble();\n" +
+"            jPanel3.add(b);\n" +
+"            jPanel3.revalidate();\n" +
+"            jPanel3.repaint();\n" +
+"            jPanel3.add(Box.createVerticalStrut(15));\n" +
+"\n" +
+"        }");
     }
 
     
     
     public void changecolour(Color color){
         setBackground(color);
+        
     }
     
     
@@ -34,24 +51,20 @@ public class ChatBubble extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(0, 153, 0));
-        setMaximumSize(new java.awt.Dimension(300, 100));
-        setMinimumSize(new java.awt.Dimension(300, 100));
-        setPreferredSize(new java.awt.Dimension(300, 100));
+        jTextArea1 = new javax.swing.JTextArea();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setBackground(new java.awt.Color(51, 255, 51));
+        setPreferredSize(new java.awt.Dimension(200, 300));
+        setLayout(new java.awt.BorderLayout());
+
+        jTextArea1.setBackground(new java.awt.Color(255, 51, 153));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        add(jTextArea1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
