@@ -6,8 +6,11 @@
 package crud.views;
 
 import crud.repository.model.Contact;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -16,6 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JViewport;
 
 /**
@@ -47,6 +51,39 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         YellowPanelContact.revalidate();
         YellowPanelContact.repaint();
 
+        /* JTextArea area = new JTextArea("hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado tengo suelo quiero dormir ayuda"
+                + "hola como va me llamo santino estoy haceindo este programa de chat estoy cansado --------------------------");
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setPreferredSize(new Dimension(300, 100));
+        area.setVisible(true);
+      jPanel3.add(area);*/
+        jPanel2.add(Box.createVerticalStrut(15));
+        for (int i = 0; i < 10; i++) {
+            ChatBubble b = new ChatBubble();
+            jPanel2.add(b);
+            jPanel2.revalidate();
+            jPanel2.repaint();
+            jPanel2.add(Box.createVerticalStrut(15));
+
+        }
+        
+        
+          jPanel4.add(Box.createVerticalStrut(15));
+        for (int i = 0; i < 20; i++) {
+            ChatBubble b = new ChatBubble();
+            b.changecolour(Color.yellow);
+            jPanel4.add(b);
+            jPanel4.revalidate();
+            jPanel4.repaint();
+            jPanel4.add(Box.createVerticalStrut(15));
+
+        }
+
+        jScrollPane4.getViewport().setOpaque(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -65,7 +102,12 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jPanelChat = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         chatPanel2 = new crud.views.ChatPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
         jPanel2Red = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -103,7 +145,7 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         greenPanel.setPreferredSize(new java.awt.Dimension(495, 400));
         greenPanel.setLayout(new javax.swing.BoxLayout(greenPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1Blue.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1Blue.setBackground(new java.awt.Color(244, 232, 232));
         jPanel1Blue.setLayout(new javax.swing.BoxLayout(jPanel1Blue, javax.swing.BoxLayout.Y_AXIS));
 
         jPanelName.setBackground(new java.awt.Color(244, 232, 232));
@@ -115,27 +157,33 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Ssgopkddddddddddddddddantino");
+        jLabel2.setText("Santino");
         jPanelName.add(jLabel2);
         jPanelName.add(filler4);
 
         jPanel1Blue.add(jPanelName);
 
         jPanelChat.setPreferredSize(new java.awt.Dimension(495, 500));
-        jPanelChat.setLayout(new java.awt.GridLayout());
+        jPanelChat.setLayout(new javax.swing.BoxLayout(jPanelChat, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout chatPanel2Layout = new javax.swing.GroupLayout(chatPanel2);
-        chatPanel2.setLayout(chatPanel2Layout);
-        chatPanel2Layout.setHorizontalGroup(
-            chatPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
-        );
-        chatPanel2Layout.setVerticalGroup(
-            chatPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
-        );
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane4.setOpaque(false);
 
-        jPanelChat.add(chatPanel2);
+        chatPanel2.setLayout(new java.awt.GridLayout(0, 2));
+
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane6.setViewportView(jPanel2);
+
+        chatPanel2.add(jScrollPane6);
+
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane7.setViewportView(jPanel4);
+
+        chatPanel2.add(jScrollPane7);
+
+        jScrollPane4.setViewportView(chatPanel2);
+
+        jPanelChat.add(jScrollPane4);
 
         jPanel1Blue.add(jPanelChat);
 
@@ -230,11 +278,16 @@ public class JFrameGridBagLayout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1Blue;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel2Red;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelChat;
     private javax.swing.JPanel jPanelName;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
