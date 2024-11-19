@@ -17,7 +17,7 @@ public interface IUserDao {
 
     UserDto retrieveUser(String username);
     
-    void changeUsername(String oldName,String newName);
+    void changeProfilePic(String oldName,String newName);
     
     void changePassword(String username,String newPassword);
 

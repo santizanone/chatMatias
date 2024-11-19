@@ -9,11 +9,17 @@ public class Message implements Serializable {
     private String originClientName;
     private String destinationClientName;
     private String messageForDestination;
+    private boolean photo = false;
 
-    public Message(String originClientName,String destinationClientName, String messageForDestination) {
+    public Message(String originClientName,String destinationClientName, String messageForDestination,boolean photo) {
         this.destinationClientName = destinationClientName;
         this.messageForDestination = messageForDestination;
         this.originClientName = originClientName;
+        this.photo = photo;
+    }
+    
+    public boolean getPhoto(){
+        return photo;
     }
 
     public String getDestinationClientName() {

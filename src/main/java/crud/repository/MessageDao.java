@@ -46,11 +46,33 @@ public class MessageDao {
             throw new RuntimeException(e);
         }
     }
-
-    public void saveMessage(int conversationId, String message, int sender_id) {
+    
+   
+    
+    
+     public void SaveImage(String url) {
         try {
             Connection con = DriverManager.getConnection(URL, USER, PASS);
-            String query = "INSERT INTO messages (conversation_id, message, sender_id, created_at) VALUES (?,?,?,?)";
+            String query = "INSERT INTO images (url) VALUES (?);";
+
+            try {
+                PreparedStatement ps = con.prepareStatement(query);               
+                ps.setString(1, url);
+                ps.executeUpdate();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveMessage(int conversationId, String message, int sender_id,int photo) {
+        try {
+            Connection con = DriverManager.getConnection(URL, USER, PASS);
+            String query = "INSERT INTO messages (conversation_id, message, sender_id, created_at,photo) VALUES (?,?,?,?,?)";
             Date date = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String currentDateTime = format.format(date);
@@ -60,6 +82,7 @@ public class MessageDao {
                 ps.setString(2, message);
                 ps.setInt(3, sender_id);
                 ps.setString(4, currentDateTime);
+                ps.setInt(5, photo);
                 ps.executeUpdate();
                 ps.close();
                 con.close();
@@ -102,7 +125,7 @@ public class MessageDao {
 
     public List<MessageDB> retrieveMessages(int conversationId) {
         ResultSet rs = null;
-        String query = "SELECT idmessages, message, sender_id, created_at \n"
+        String query = "SELECT idmessages, message, sender_id, created_at,photo \n"
                 + "FROM messages \n"
                 + "WHERE conversation_id = ?\n"
                 + "ORDER BY created_at ASC;";
@@ -114,7 +137,7 @@ public class MessageDao {
             rs = ps.executeQuery();
             List<MessageDB> messageList = new ArrayList<>();
             while (rs.next()) {
-                MessageDB msg  = new MessageDB(rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getString(4));
+                MessageDB msg  = new MessageDB(rs.getInt(1), rs.getString(2),rs.getInt(3), rs.getString(4),rs.getInt(5));
                 messageList.add(msg);
             }
             ps.close();

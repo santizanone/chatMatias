@@ -15,13 +15,18 @@ public class UserDto {
     private String password;
     
     private int id;
+    private String photopath;
 
-    public UserDto(String username, String password, int id) {
+    public UserDto(String username, String password, int id,String photopath) {
         this.username = username;
         this.password = password;
         this.id = id;
+        this.photopath = photopath;
     }
 
+    public String getPhotoPath(){
+        return photopath;
+    }
     public int getId() {
         return id;
     }

@@ -14,12 +14,18 @@ public class MessageDB {
     private String message;
     private int sender_id;
     private String createdAt;
+    private int photo ;
 
-    public MessageDB(int conversationId, String message, int sender_id, String createdAt) {
+    public MessageDB(int conversationId, String message, int sender_id, String createdAt,int photo) {
         this.conversationId = conversationId;
         this.message = message;
         this.sender_id = sender_id;
         this.createdAt = createdAt;
+        this.photo = photo;
+    }
+    
+    public int getPhoto(){
+        return photo;
     }
 
     public int getConversationId() {

@@ -22,11 +22,12 @@ public class UserDao implements IUserDao {
     public void registerUser(UserDto user) {
         try {
             Connection con = DriverManager.getConnection(URL, USER, PASS);
-            String query = "insert into user (username,password) values (?,?)";
+            String query = "insert into user (username,password,profile_pic) values (?,?,?)";
             try {
                 PreparedStatement ps = con.prepareStatement(query);
                 ps.setString(1, user.getUsername());
                 ps.setString(2, user.getPassword());
+                ps.setString(3, user.getPhotoPath());
                 ps.executeUpdate();
                 ps.close();
                 con.close();
@@ -50,7 +51,7 @@ public class UserDao implements IUserDao {
             rs = ps.executeQuery();
             UserDto userDto = null;
             while (rs.next()) {
-                userDto = new UserDto(rs.getString(2), rs.getString(3),rs.getInt(1));
+                userDto = new UserDto(rs.getString(2), rs.getString(3),rs.getInt(1),rs.getString(4));
             }
             ps.close();
             rs.close();
@@ -63,14 +64,14 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public void changeUsername(String oldName, String newName) {
+    public void changeProfilePic(String name, String path) {
         try {
             Connection con = DriverManager.getConnection(URL, USER, PASS);
-            String query = "update user set username = ? where username = ?";
+            String query = "update user set profile_pic = ? where username = ?";
             try {
                 PreparedStatement ps = con.prepareStatement(query);
-                ps.setString(1, newName);
-                ps.setString(2, oldName);
+                ps.setString(1, path);
+                ps.setString(2, name);
                 ps.executeUpdate();
                 ps.close();
                 con.close();

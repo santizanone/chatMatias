@@ -391,7 +391,7 @@ public class ChatUi2 extends javax.swing.JFrame {
                 return;
             }
             System.out.println("enviando " + jTextAreaSendMsg.getText());
-            Message message = new Message(username, currentOpenedChat.getContactName(), jTextAreaSendMsg.getText());
+            Message message = new Message(username, currentOpenedChat.getContactName(), jTextAreaSendMsg.getText(),false);
 
             receivedMessages.add(message);
 
@@ -486,7 +486,7 @@ public class ChatUi2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Complete el Campo");
             return;
         }
-        controller.ChangeUsername(username, nuevoNombre);
+        controller.ChangeMail(username, nuevoNombre);
     }
 
     private void ItemCambiarContraseñaActionPerformed() {

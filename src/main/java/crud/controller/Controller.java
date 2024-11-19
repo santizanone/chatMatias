@@ -8,6 +8,7 @@ import crud.repository.model.Contact;
 import crud.repository.model.MessageDB;
 import crud.repository.model.UserDto;
 import crud.views.ChatUi2;
+import crud.views.JFrameGridBagLayout;
 import crud.views.Login;
 import crud.views.Registro;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Controller {
     private IUserDao userDao;
     private Registro registro;
     private IContactDao contactDao;
-    private ChatUi2 chatUI ;
+    private JFrameGridBagLayout chatUI ;
 
     private Login login;
 
@@ -85,7 +86,11 @@ public class Controller {
                     }
                     login.closeWindow();
                     contactDao = new ContactDao(userDto.getUsername());
-                    chatUI = new ChatUi2(Controller.this,userDto);
+                    //chatUI = new ChatUi2(Controller.this,userDto);
+                    JFrameGridBagLayout f = new JFrameGridBagLayout(Controller.this, userDto);
+                    f.setVisible(true);
+                    chatUI = f;
+                    
                     System.out.println(chatUI);
                 } catch (InterruptedException | ExecutionException e) {
                     throw new RuntimeException(e);
@@ -95,7 +100,7 @@ public class Controller {
         worker.execute();
     }
     
-    public void ChangeUsername(String oldName,String newName){
+    public void ChangeMail(String oldName,String newName){
         SwingWorker worker = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
@@ -111,7 +116,7 @@ public class Controller {
                         chatUI.showMessage("User Already Exists");
                         return;
                     }
-                    userDao.changeUsername(oldName, newName);
+                    userDao.changeProfilePic(oldName, newName);
                     chatUI.showMessage("nombre cambiado correctamente");
                     
                                        
@@ -151,7 +156,7 @@ public class Controller {
     }
     
     
-    public void retrieveMessagesFromConversation(int user1Id,int user2Id){
+    public void retrieveMessagesFromConversation(int user1Id,int user2Id,String name){
         MessageDao dao = new MessageDao();
         SwingWorker worker = new SwingWorker <List<MessageDB> , Void>() {
             @Override
@@ -171,7 +176,10 @@ public class Controller {
                             System.out.println(m);
                         }
                         chatUI.showMessagesDb(messages);
+                        System.out.println(name);
+                        chatUI.updateNameChat(name);
                     }else{
+                        chatUI.updateNameChat(name);
                         System.out.println("no conversation");
                     }
                 } catch (InterruptedException ex) {
@@ -184,10 +192,16 @@ public class Controller {
         worker.execute();      
     }
     
-    public void saveMessage(int senderUserId,int receiverUserId,String message){
+    public void saveMessage(int senderUserId,int receiverUserId,String message,int photo){
         MessageDao dao = new MessageDao();
         int conversationId = dao.retrieveConversationId(senderUserId, receiverUserId);
-        dao.saveMessage(conversationId, message, senderUserId);
+        if(conversationId == -1){
+            dao.SaveConversation(senderUserId, receiverUserId);
+            System.out.println("saving");
+        }
+        conversationId = dao.retrieveConversationId(senderUserId, receiverUserId);
+        System.out.println(conversationId);
+        dao.saveMessage(conversationId, message, senderUserId,photo);
     }
     
     
